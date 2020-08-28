@@ -7,6 +7,7 @@ sudo: false
 notifications:
   email:
     recipients:
+      - asorokin@hawk.iit.edu
       - schoi32@iit.edu
       - jrathin1@iit.edu
       - qmc-software@googlegroups.com
