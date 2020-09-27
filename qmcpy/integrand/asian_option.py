@@ -10,6 +10,14 @@ class AsianOption(Integrand):
     Asian financial option. 
 
     >>> dd = Sobol(4,seed=7)
+    >>> dd
+    Sobol (DiscreteDistribution Object)
+        dimension       2^(2)
+        randomize       1
+        graycode        0
+        seed            [ 327741615  976413892 3349725721 1369975286]
+        mimics          StdUniform
+        dim0            0
     >>> m = BrownianMotion(dd)
     >>> ac = AsianOption(m)
     >>> ac
@@ -25,7 +33,7 @@ class AsianOption(Integrand):
     >>> x = dd.gen_samples(2**10)
     >>> y = ac.f(x)
     >>> y.mean()
-    1.763129736554059
+    1.763129736554059...
 
     >>> dd2 = Sobol(seed=7)
     >>> m2 = BrownianMotion(dd2,drift=1)
