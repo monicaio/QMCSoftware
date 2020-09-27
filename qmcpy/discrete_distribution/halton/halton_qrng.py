@@ -43,7 +43,7 @@ class HaltonQRNG(object):
         return x.T
     
     def set_seed(self, seed):
-        self.s = seed if seed else random.randint(2**32)
+        self.s = seed if seed else random.randint(2**32, dtype=uint64)
         return self.s
         
     def set_dimension(self, dimension):
