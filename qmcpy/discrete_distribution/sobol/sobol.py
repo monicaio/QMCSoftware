@@ -149,7 +149,7 @@ class Sobol(DiscreteDistribution):
         self.mimics = 'StdUniform'
         super(Sobol,self).__init__()        
 
-    def gen_samples(self, n=None, n_min=0, n_max=8, warn=True):
+    def gen_samples(self, n=None, n_min=0, n_max=8, warn=True, enable_randomize=True):
         """
         Generate samples
 
@@ -171,7 +171,11 @@ class Sobol(DiscreteDistribution):
             self.set_seed(self.seed)
         n = int(n_max-n_min)
         x = zeros((n,self.dimension), dtype=double)
-        rc = self.sobol_cf(n, self.dimension, int(n_min), self.dim0, self.randomize, self.graycode, \
+        if enable_randomize:
+            rc = self.sobol_cf(n, self.dimension, int(n_min), self.dim0, self.randomize, self.graycode, \
+            self.seed, x, self.d_max, self.m_max, self.z, self.msb)
+        else:
+            rc = self.sobol_cf(n, self.dimension, int(n_min), self.dim0, 0, self.graycode, \
             self.seed, x, self.d_max, self.m_max, self.z, self.msb)
         if rc!= 0:
             raise ParameterError(self.errors[rc])

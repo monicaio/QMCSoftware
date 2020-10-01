@@ -11,7 +11,7 @@ notifications:
       - jrathin1@iit.edu
       - qmc-software@googlegroups.com
     on_success: change # default: change
-    on_failure: always # default: always
+    on_failure: change # default: always
 
 
 matrix:
