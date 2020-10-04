@@ -204,14 +204,14 @@ class TestCubBayesNetG(unittest.TestCase):
         self.assertRaises(DistributionCompatibilityError, CubBayesNetG, integrand)
 
     def test_n_max_single_level(self):
-        distribution = Sobol(dimension=2, backend="QRNG")
+        distribution = Sobol(dimension=2)
         measure = Gaussian(distribution)
         integrand = Keister(measure)
         algorithm = CubBayesNetG(integrand, abs_tol=.0001, n_init=2 ** 8, n_max=2 ** 9)
         self.assertWarns(MaxSamplesWarning, algorithm.integrate)
 
     def test_keister_2d(self):
-        distribution = Sobol(dimension=2)
+        distribution = Sobol(dimension=2, randomize='LMS', seed=1234567, graycode=False)
         measure = Gaussian(distribution, covariance=1./2)
         integrand = Keister(measure)
         solution, data = CubBayesNetG(integrand, abs_tol=tol, n_init=2 ** 5).integrate()

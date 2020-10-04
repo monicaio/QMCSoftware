@@ -86,7 +86,7 @@ class Sobol(DiscreteDistribution):
         """
         Args:
             dimension (int): dimension of samples
-            randomize (bool): If True, apply digital shift to generated samples.
+            randomize (str): If True, apply digital shift to generated samples.
                 Note: Non-randomized Sobol' sequence includes the origin.
             graycode (bool): indicator to use graycode ordering (True) or natural ordering (False)
             seeds (list): int seed of list of seeds, one for each dimension.
@@ -173,10 +173,10 @@ class Sobol(DiscreteDistribution):
         x = zeros((n,self.dimension), dtype=double)
         if enable_randomize:
             rc = self.sobol_cf(n, self.dimension, int(n_min), self.dim0, self.randomize, self.graycode, \
-            self.seed, x, self.d_max, self.m_max, self.z, self.msb)
+                self.seed, x, self.d_max, self.m_max, self.z, self.msb)
         else:
             rc = self.sobol_cf(n, self.dimension, int(n_min), self.dim0, 0, self.graycode, \
-            self.seed, x, self.d_max, self.m_max, self.z, self.msb)
+                self.seed, x, self.d_max, self.m_max, self.z, self.msb)
         if rc!= 0:
             raise ParameterError(self.errors[rc])
         return x
